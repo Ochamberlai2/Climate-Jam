@@ -16,7 +16,7 @@ public class WorldRegion {
     public int GHG_Level;
     [SerializeField]
     private Region region;
-    public List<Upgrade> modifer_Upgrades;
+    public List<Upgrade> region_Upgrades;
     //insert global effect object/list here
 	
     public Region GetRegion()

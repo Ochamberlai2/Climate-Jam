@@ -23,7 +23,10 @@ public class Stat : MonoBehaviour {
             return last_Value;
         }
     }
-
+    public void Awake()
+    {
+        stat_Modifiers = new List<StatModifier>();
+    }
     /// <summary>
     /// Calculate the total value of the modifiers
     /// </summary>
@@ -48,13 +51,13 @@ public class Stat : MonoBehaviour {
                     break;
                  //if it's multiplicative, multiply it by the value
                 case StatModifierType.Multiplicative:
-                    final_value *= 1 + stat_Modifiers[i].value;
+                    final_value *= 1 + (stat_Modifiers[i].value / 100);
                     break;
                  //if it's percent add, we need to add the value to a temporary variable, then once the modifier at the next index is not
                  //percent additive, or is the end of the list, reset the variable.
                 case StatModifierType.PercentAdditive:
-                    percent_additive_value += stat_Modifiers[i].value;
-                    if(stat_Modifiers[i + 1].stat_Modifier_Type != StatModifierType.PercentAdditive || i +1 >= stat_Modifiers.Count)
+                    percent_additive_value += stat_Modifiers[i].value / 100;
+                    if (i +1 == stat_Modifiers.Count || stat_Modifiers[i + 1].stat_Modifier_Type != StatModifierType.PercentAdditive)
                     {
                         final_value *= 1 + percent_additive_value;
                         percent_additive_value = 0;

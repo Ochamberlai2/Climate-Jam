@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GlobalBlackboard : MonoBehaviour
 {
@@ -24,15 +25,24 @@ public class GlobalBlackboard : MonoBehaviour
             return global_Blackboard;
         }
     }
-#endregion
+    #endregion
+
+    [SerializeField]
+    private bool DEBUG;
+
 
     public Money money;
     public PassYears time;
-    public GlobalInformation GHG;
+    public List<WorldRegion> regions;
+
 
 
     public void Start()
     {
+        if(DEBUG)
+        {
+            time.date_Last_Opened = DateTime.UtcNow;
+        }
         //give money for amount of time passed
         TimeSpan timePassed = DateTime.UtcNow - time.date_Last_Opened;
         money.current_Money += money.total_Value * timePassed.Minutes;
