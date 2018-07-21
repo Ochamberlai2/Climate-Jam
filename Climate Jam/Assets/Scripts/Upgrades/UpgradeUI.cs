@@ -12,6 +12,9 @@ public class UpgradeUI : MonoBehaviour {
     private Transform upgrade_Panel;
     [SerializeField]
     private int button_Pool_Size = 10;
+    [SerializeField]
+    private RenderTexture renderTexture;
+
 
     public void Start()
     {
@@ -46,11 +49,13 @@ public class UpgradeUI : MonoBehaviour {
         }
 
     }
-    public void SelectRegion(Region region)
+    private void SelectRegion(Region region)
     {
         ResetButtons();
         //get the region of the world that is being changed to
         WorldRegion worldRegion = GlobalBlackboard.Instance.regions[(int)region];
+
+       
         //loop through all of the upgrades in the region and set the buttons up
         for(int i = 0; i < worldRegion.region_Upgrades.Count; i++)
         {
@@ -70,10 +75,29 @@ public class UpgradeUI : MonoBehaviour {
             buttons[i].SetActive(false);
         }
     }
+    private void SetRenderTexture(Region region)
+    {
+
+            
+            //set the render texture of the region's camera
+           
+           
+
+    }
     //setter for selected region
     public void SetSelectedRegion(Region region)
     {
+
+        if(currently_Selected_Region != Region.Worldwide)
+            GlobalBlackboard.Instance.regions[(int)currently_Selected_Region].region_Camera.targetTexture = null;
+
+
         currently_Selected_Region = region;
+
+        if (region != Region.Worldwide)
+        {
+            GlobalBlackboard.Instance.regions[(int)region].region_Camera.targetTexture = renderTexture;
+        }
         SelectRegion(region);
     }
 }

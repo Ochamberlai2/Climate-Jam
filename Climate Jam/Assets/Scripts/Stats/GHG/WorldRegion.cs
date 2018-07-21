@@ -17,6 +17,7 @@ public class WorldRegion {
     [SerializeField]
     private Region region;
     public List<Upgrade> region_Upgrades;
+    public Camera region_Camera;
     //insert global effect object/list here
 	
     public Region GetRegion()
