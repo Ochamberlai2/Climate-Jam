@@ -11,11 +11,16 @@ public class StatUI : MonoBehaviour {
     [SerializeField]
     private Text greenhouse_gases;
 
-    //THIS NEEDS TO BE CHANGED BEFORE UI IS FINALISED
-    void Update ()
+    public void UpdateMoneyUI(float moneyAmt)
     {
-        money.text = "£" + GlobalBlackboard.Instance.money.current_Money.ToString();
-        years_played.text = Mathf.RoundToInt(GlobalBlackboard.Instance.time.num_Years_Passed).ToString() + " Years Played";
-
-	}
+        money.text = "£" + Mathf.RoundToInt(moneyAmt).ToString();
+    }
+    public void UpdateYearsUI(float yearsAmt)
+    {
+        years_played.text = Mathf.RoundToInt(yearsAmt).ToString() + " Years Played";
+    }
+    public void UpdateGHGUI(Region region)
+    {
+        greenhouse_gases.text = "Greenhouse Gas Level: " + GlobalBlackboard.Instance.regions[(int)region].GHG_Level.ToString();
+    }
 }

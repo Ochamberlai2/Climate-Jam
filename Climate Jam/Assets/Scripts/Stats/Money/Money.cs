@@ -11,6 +11,7 @@ public class Money : Stat {
         while(true)
         {
             current_Money += total_Value;
+            GlobalBlackboard.Instance.statUI.UpdateMoneyUI(current_Money);
             yield return new WaitForSeconds(1);
         }
     }

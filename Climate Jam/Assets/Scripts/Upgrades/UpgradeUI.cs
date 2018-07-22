@@ -43,6 +43,7 @@ public class UpgradeUI : MonoBehaviour {
             GlobalBlackboard.Instance.money.AddModifier(upgrade.upgrade_Stat_Modifiers[upgrade.upgrade_Level]);
             GlobalBlackboard.Instance.regions[(int)currently_Selected_Region].GHG_Level += upgrade.modifier_GHG_Effect;
             GlobalBlackboard.Instance.money.current_Money -= upgrade.upgrade_Cost[upgrade.upgrade_Level];
+            GlobalBlackboard.Instance.statUI.UpdateGHGUI(currently_Selected_Region);
             upgrade.upgrade_Level++;
             buttons[buttonIndex].transform.Find("Text").GetComponent<Text>().text = upgrade.upgrade_Level.ToString();
             Debug.Log("upgrade purchased: " + upgrade.upgrade_Name);

@@ -33,6 +33,7 @@ public class GlobalBlackboard : MonoBehaviour
 
     public Money money;
     public PassYears time;
+    public StatUI statUI;
     public List<WorldRegion> regions;
 
 
@@ -43,6 +44,7 @@ public class GlobalBlackboard : MonoBehaviour
         {
             time.date_Last_Opened = DateTime.UtcNow;
         }
+        statUI = FindObjectOfType<StatUI>();
         //give money for amount of time passed
         TimeSpan timePassed = DateTime.UtcNow - time.date_Last_Opened;
         money.current_Money += money.total_Value * timePassed.Minutes;

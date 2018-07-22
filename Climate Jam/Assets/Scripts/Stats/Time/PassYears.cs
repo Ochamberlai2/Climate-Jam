@@ -17,6 +17,7 @@ public class PassYears : MonoBehaviour {
         while(true)
         {
             num_Years_Passed += years_Per_Min /60;
+            GlobalBlackboard.Instance.statUI.UpdateYearsUI(num_Years_Passed);
             yield return new WaitForSeconds(1);
         }
     }
