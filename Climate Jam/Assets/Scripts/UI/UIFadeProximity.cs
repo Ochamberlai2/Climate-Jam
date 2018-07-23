@@ -34,15 +34,24 @@ public class UIFadeProximity : MonoBehaviour {
         {
             for (int i = 0; i < childImages.Length; i++)
             {
-                childImages[i].color = new Color(childImages[i].color.r, childImages[i].color.g, childImages[i].color.b, 0);
+                //if the game object is active, deactivate
+               if(childImages[i].gameObject.activeSelf)
+                {
+                    childImages[i].gameObject.SetActive(false);
+                }
 
             }
         }
         //if distance from camera is between the min and max, reduce the alpha proportionally 
         else if (distFromCamera > min_Fade_Distance && distFromCamera < max_Fade_Distance)
-        {
+        { 
             for (int i = 0; i < childImages.Length; i++)
             {
+                //if the game object is active, deactivate
+                if (!childImages[i].gameObject.activeSelf)
+                {
+                    childImages[i].gameObject.SetActive(true);
+                }
                 float alphaValue = 1.0f - Mathf.Clamp01((distFromCamera - min_Fade_Distance) / (max_Fade_Distance - min_Fade_Distance));
                 childImages[i].color = new Color(childImages[i].color.r, childImages[i].color.g, childImages[i].color.b, alphaValue);
 
