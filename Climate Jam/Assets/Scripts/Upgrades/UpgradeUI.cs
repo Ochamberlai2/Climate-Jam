@@ -23,6 +23,9 @@ public class UpgradeUI : MonoBehaviour {
     [SerializeField]
     private GameObject scrollview;
 
+    [SerializeField]
+    private Animator panel_Animator;
+
     public void Start()
     {
         buttons = new GameObject[button_Pool_Size];
@@ -90,7 +93,8 @@ public class UpgradeUI : MonoBehaviour {
                 }
                 buttons[i].transform.Find("Level Pips").GetChild(j).gameObject.SetActive(true);
             }
-
+           //reset the ui element's scale to avoid weird stretching
+            buttons[i].transform.localScale = Vector3.one;
         }
     }
     public void ResetButtons()
@@ -131,19 +135,15 @@ public class UpgradeUI : MonoBehaviour {
         if (region != Region.Worldwide)
         {
             GlobalBlackboard.Instance.regions[(int)region].region_Camera.targetTexture = renderTexture;
-            //activate the scrollview if it's inactive
-            if(!scrollview.activeSelf)
-            {
-                scrollview.SetActive(true);
-            }
+
+            panel_Animator.SetBool("PanelActive", true);
+
         }
         else
         {
-            if(scrollview.activeSelf)
-            {
-                scrollview.SetActive(false);
-            }
+            panel_Animator.SetBool("PanelActive", false);
         }
+
         SelectRegion(region);
     }
 }
