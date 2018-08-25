@@ -7,7 +7,6 @@ public class PassYears : MonoBehaviour {
     public float num_Years_Passed;
     [SerializeField]
     private float years_Per_Min;
-    public DateTime date_Last_Opened;
 
    
 

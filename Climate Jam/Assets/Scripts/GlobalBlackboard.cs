@@ -40,14 +40,15 @@ public class GlobalBlackboard : MonoBehaviour
 
     public void Start()
     {
-        if(DEBUG)
-        {
-            time.date_Last_Opened = DateTime.UtcNow;
-        }
+        //if(DEBUG)
+        //{
+        //}
         statUI = FindObjectOfType<StatUI>();
-        //give money for amount of time passed
-        TimeSpan timePassed = DateTime.UtcNow - time.date_Last_Opened;
-        money.current_Money += money.total_Value * timePassed.Minutes;
+        ////give money for amount of time passed
+        //TimeSpan timePassed = DateTime.UtcNow - time.date_Last_Opened;
+        //money.current_Money += money.total_Value * timePassed.Minutes;
+
+
         //start the passing of time
         time.StartCoroutine(time.PassYearsRealtime());
         //start gaining money
@@ -55,14 +56,15 @@ public class GlobalBlackboard : MonoBehaviour
     }
 
     private void OnApplicationQuit()
-    {
-        time.date_Last_Opened = DateTime.UtcNow;
+    { 
         //save the time last opened
         time.StopCoroutine(time.PassYearsRealtime());
 
         //stop gaining money
         money.StopCoroutine(money.GainMoney());
 
+        //save game data
+        SaveLoadData.SaveGameData();
     }
 
 
