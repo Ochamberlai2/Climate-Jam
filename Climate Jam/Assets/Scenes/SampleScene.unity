@@ -638,7 +638,6 @@ MonoBehaviour:
   upgrade_Not_Bought_Image: {fileID: 21300000, guid: 18e2ff1d451834543904126f62d5eb65,
     type: 3}
   scrollview: {fileID: 327382731}
-  panel_Active: 0
   panel_Animator: {fileID: 327382736}
 --- !u!222 &295459232
 CanvasRenderer:
@@ -1467,7 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316502446a6f60841b3919982af5379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG: 1
+  DEBUG: 0
   money: {fileID: 299790366}
   time: {fileID: 44449474}
   statUI: {fileID: 0}
@@ -1702,7 +1701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.9822923, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 3, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1376598117

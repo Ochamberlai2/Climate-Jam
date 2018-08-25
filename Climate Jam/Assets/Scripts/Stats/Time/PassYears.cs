@@ -8,10 +8,11 @@ public class PassYears : MonoBehaviour {
     [SerializeField]
     private float years_Per_Min;
 
-   
+    public DateTime date_Last_Opened;
 
 
-	public IEnumerator PassYearsRealtime()
+
+    public IEnumerator PassYearsRealtime()
     {
         while(true)
         {

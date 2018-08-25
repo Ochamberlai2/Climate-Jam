@@ -40,14 +40,15 @@ public class GlobalBlackboard : MonoBehaviour
 
     public void Start()
     {
-        //if(DEBUG)
-        //{
-        //}
-        statUI = FindObjectOfType<StatUI>();
-        ////give money for amount of time passed
-        //TimeSpan timePassed = DateTime.UtcNow - time.date_Last_Opened;
-        //money.current_Money += money.total_Value * timePassed.Minutes;
+        if(!DEBUG)
+        {
+            SaveLoadData.LoadGameData();
 
+            //give money for amount of time passed
+            TimeSpan timePassed = DateTime.UtcNow - time.date_Last_Opened;
+            money.current_Money += money.total_Value * timePassed.Minutes;
+        }
+        statUI = FindObjectOfType<StatUI>();
 
         //start the passing of time
         time.StartCoroutine(time.PassYearsRealtime());
